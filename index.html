@@ -8,20 +8,22 @@
 <script type="text/javascript" src="qrcode.js"></script>
 </head>
 <body>
-<input id="text" type="text" value="http://jindo.dev.naver.com/collie" style="width:80%" /><br />
+<select style="width:80%" id="server">
+    <option value="http://vmdevqws.qualiac.fr/dvtora/rest" selected>vmdevqws</option>
+    <option value="https://appstore.qualiac.com/qwsr/rest">appstore</option>
+</select>
 <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
 
 <script type="text/javascript">
 var qrcode = new QRCode(document.getElementById("qrcode"), {
-	width : 100,
-	height : 100
+	width : 200,
+	height : 200
 });
 
 function makeCode () {		
-	var elText = document.getElementById("text");
+	var elText = document.getElementById("server");
 	
 	if (!elText.value) {
-		alert("Input a text");
 		elText.focus();
 		return;
 	}
@@ -31,14 +33,9 @@ function makeCode () {
 
 makeCode();
 
-$("#text").
-	on("blur", function () {
+$("#server").
+	on("change", function () {
 		makeCode();
-	}).
-	on("keydown", function (e) {
-		if (e.keyCode == 13) {
-			makeCode();
-		}
-	});
+	})
 </script>
 </body>
