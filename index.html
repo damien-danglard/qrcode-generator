@@ -6,12 +6,26 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="qrcode.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <select style="width:80%" id="server">
     <option value="http://vmdevqws.qualiac.fr/dvtora/rest" selected>vmdevqws</option>
     <option value="https://appstore.qualiac.com/qwsr/rest">appstore</option>
-</select>
+</select><br/>
+<input type="checkbox" name="authenticated" id="authenticated" /> <label for="authenticated">Authentification</label><br>
+<select style="width:80%" id="authentication" disabled>
+    <option value="TSTMOB:appstore12@2017">TSTMOB (appstore)</option>
+    <option value="TSTNIV1A:appstore12@2017">TSTNIV1A (appstore)</option>
+    <option value="TSTMOB:tstmob" selected>TSTMOB</option>
+    <option value="GRI:grigri">GRI</option>
+</select><br/>
+
 <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
 
 <script type="text/javascript">
@@ -27,15 +41,27 @@ function makeCode () {
 		elText.focus();
 		return;
 	}
-	
-	qrcode.makeCode(elText.value);
+
+	let url = new URL(elText.value)
+    if ($("#authenticated").is(':checked')) {
+        let authentication = $("#authentication").val().split(":")
+        url.username = authentication[0]
+        url.password = authentication[1]
+    }
+	qrcode.makeCode(url.toString());
 }
 
 makeCode();
 
-$("#server").
-	on("change", function () {
-		makeCode();
-	})
+$("#server").on("change", function () {
+    makeCode();
+})
+$("#authenticated").change(function () {
+    $("#authentication").attr("disabled", !this.checked)
+    makeCode()
+})
+$("#authentication").change(function () {
+    makeCode()
+})
 </script>
 </body>
