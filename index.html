@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<!DOCTYPE html>
+<html>
 <head>
 <title>Cross-Browser QRCode generator for Javascript</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -14,19 +14,45 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<select style="width:80%" id="server">
-    <option value="http://vmdevqws.qualiac.fr/dvtora/rest" selected>vmdevqws</option>
-    <option value="https://appstore.qualiac.com/qwsr/rest">appstore</option>
-</select><br/>
-<input type="checkbox" name="authenticated" id="authenticated" /> <label for="authenticated">Authentification</label><br>
-<select style="width:80%" id="authentication" disabled>
-    <option value="TSTMOB:appstore12@2017">TSTMOB (appstore)</option>
-    <option value="TSTNIV1A:appstore12@2017">TSTNIV1A (appstore)</option>
-    <option value="TSTMOB:tstmob" selected>TSTMOB</option>
-    <option value="GRI:grigri">GRI</option>
-</select><br/>
+<main class="container px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+    <div class="card">
+        <h1 class="card-header text-center">QRCode Generator</h1>
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-9">
 
-<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="server">
+                                    <option value="http://vmdevqws.qualiac.fr/dvtora/rest" selected>vmdevqws</option>
+                                    <option value="https://appstore.qualiac.com/qwsr/rest">appstore</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="authenticated">
+                                    <label class="form-check-label" for="authenticated">Authentification</label>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <select class="form-select" id="authentication" disabled>
+                                    <option value="TSTMOB:appstore12@2017">TSTMOB (appstore)</option>
+                                    <option value="TSTNIV1A:appstore12@2017">TSTNIV1A (appstore)</option>
+                                    <option value="TSTMOB:tstmob" selected>TSTMOB</option>
+                                    <option value="GRI:grigri">GRI</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-3 text-center" id="qrcode"></div>
+            </div>
+        </div>
+    </div>
+</main>
+<br/>
 
 <script type="text/javascript">
 var qrcode = new QRCode(document.getElementById("qrcode"), {

@@ -275,8 +275,8 @@ var QRCode;
 	})() : (function () { // Drawing in Canvas
 		function _onMakeImage() {
 			this._elImage.src = this._elCanvas.toDataURL("image/png");
-			this._elImage.style.display = "block";
-			this._elCanvas.style.display = "none";			
+			this._elImage.stylestyle.removeProperty('display')
+			this._elCanvas.style.display = "none";
 		}
 		
 		// Android 2.1 bug workaround
