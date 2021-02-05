@@ -1,0 +1,61 @@
+{
+  "auth": [
+    {
+      "user": "TSTMOB",
+      "password": "tstmob",
+      "group": "internal"
+    },
+    {
+      "user": "GRI",
+      "password": "grigri",
+      "group": "internal"
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://vmdevqws.qualiac.fr/dvtora/rest",
+      "name": "VMDEVQWS",
+      "group": "internal",
+      "auth": [
+        {
+          "group": "internal"
+        }
+      ]
+    },
+    {
+      "url": "https://appstore.qualiac.com/qwsr/rest",
+      "name": "AppStore",
+      "group": "internal",
+      "auth": [
+        {
+          "user": "TSTMOB",
+          "password": "appstore12@2017"
+        },
+        {
+          "user": "TSTNIV1A",
+          "password": "appstore12@2017"
+        }
+      ]
+    },
+    {
+      "url": "http://srvpch.qualiac.fr:8182/H501PCHORA/rest",
+      "name": "H501PCHORA",
+      "group": "internal",
+      "auth": [
+        {
+          "group": "internal"
+        }
+      ]
+    },
+    {
+      "url": "https://qualiacmobile-val.chuv.ch",
+      "name": "CHUV-VAL",
+      "group": "CHUV"
+    },
+    {
+      "url": "https://qualiacmobile.chuv.ch",
+      "name": "CHUV-PROD",
+      "group": "CHUV"
+    }
+  ]
+}
