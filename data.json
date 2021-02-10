@@ -23,8 +23,8 @@
       ]
     },
     {
-      "url": "https://appstore.qualiac.com/qwsr/rest",
-      "name": "AppStore",
+      "url": "https://xrp-ultimate.qualiac.com/apple/rest",
+      "name": "Apple",
       "group": "internal",
       "auth": [
         {
