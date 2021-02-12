@@ -56,6 +56,16 @@
       "url": "https://qualiacmobile.chuv.ch",
       "name": "CHUV-PROD",
       "group": "CHUV"
+    },
+    {
+      "url": "https://qualiac-qws-i.joinmyit.com/zen2iqws/rest",
+      "name": "TOTAL-I",
+      "group": "TOTAL"
+    },
+    {
+      "url": "https://qualiac-qws-p.joinmyit.com/zen2pqws/rest",
+      "name": "TOTAL-P",
+      "group": "TOTAL"
     }
   ]
 }
