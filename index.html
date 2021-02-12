@@ -84,6 +84,26 @@
 </main>
 <br/>
 
+<script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyAhiiT9b8H2Nn2kImd0qfzBH56TcRrI9Kg",
+        authDomain: "qrcode-generator-29387.firebaseapp.com",
+        databaseURL: "https://qrcode-generator-29387-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "qrcode-generator-29387",
+        storageBucket: "qrcode-generator-29387.appspot.com",
+        messagingSenderId: "599939483269",
+        appId: "1:599939483269:web:ea3bab864a7eb9e28acbec",
+        measurementId: "G-593S86BPN7"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+</script>
 <script type="text/javascript">
 var qrcode = new QRCode(document.getElementById("qrcode-shortcuts"), {
 	width : 200,
@@ -138,11 +158,11 @@ $("#custom-url").change(function () {
     makeCustomCode()
 })
 
-
-$(document).ready(function(){
-    $.getJSON("data.json", function(data){
-        //console.log(data.servers);
-        let groups = data.servers.reduce(function(result, current) {
+const database = firebase.database();
+database.ref().child("servers").get().then(function (snapshot) {
+    if (snapshot.exists()) {
+        const data = snapshot.val();
+        let groups = data.reduce(function(result, current) {
             result[current.group] = result[current.group] || [];
             result[current.group].push(current);
             return result;
@@ -160,9 +180,14 @@ $(document).ready(function(){
 
             $("#server").append(optgroup)
         }
-    }).fail(function(){
-        console.log("An error has occurred.");
-    });
+
+        makeCode();
+    }
+    else {
+        console.log("No data available");
+    }
+}).catch(function(error) {
+    console.error(error);
 });
 
 </script>
