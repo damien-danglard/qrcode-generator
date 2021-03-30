@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cross-Browser QRCode generator for Javascript</title>
+<title>QRCode Generator - Cegid XRP Ultimate</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 <script type="text/javascript" src="jquery.min.js"></script>
@@ -126,9 +126,9 @@ function makeCode () {
     if ($("#authenticated").is(':checked')) {
         let authentication = $("#authentication").val().split(":")
         url.username = authentication[0]
-        url.password = authentication[1]
+        url.password = encodeURIComponent(authentication[1])
     }
-	qrcode.makeCode(url.toString());
+	qrcode.makeCode(decodeURIComponent(url.toString()));
 }
 
 function makeCustomCode () {
